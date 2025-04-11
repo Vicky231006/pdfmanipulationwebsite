@@ -54,11 +54,15 @@
 
 .file-info {
     flex: 1;
+    min-width: 0; /* Allows text truncation to work */
 }
 
 .file-name {
     font-weight: 500;
     margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .file-size {
@@ -69,6 +73,7 @@
 .file-actions {
     display: flex;
     gap: 0.5rem;
+    margin-left: 1rem;
 }
 
 .file-actions button {
@@ -111,7 +116,6 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1rem;
     margin-top: 1rem;
-    min-height: 200px;
 }
 
 .page-item {
@@ -238,5 +242,55 @@
 @media (max-width: 768px) {
     .merge-container {
         grid-template-columns: 1fr;
+    }
+
+    .pages-container {
+        padding: 0.5rem;
+        max-height: calc(100vh - 150px);
+    }
+
+    .page-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 0.5rem;
+    }
+
+    .page-item {
+        padding: 0.25rem;
+    }
+
+    .page-actions {
+        opacity: 1;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 4px;
+        padding: 0.25rem;
+    }
+
+    .file-item {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.75rem;
+    }
+
+    .file-info {
+        margin-bottom: 0.5rem;
+    }
+
+    .file-actions {
+        justify-content: flex-end;
+        margin-left: 0;
+    }
+
+    .modal-content {
+        padding: 1rem;
+        width: 95%;
+    }
+
+    .pages-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .pages-header button {
+        width: 100%;
     }
 } 
