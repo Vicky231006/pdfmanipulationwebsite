@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Reorder PDF Pages - PDF Manipulator{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pdf-viewer.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Reorder PDF Pages</h1>
+    <p class="subtitle">Rearrange PDF pages with drag-and-drop ease</p>
+
+    <div class="reorder-container">
+        <div class="upload-section">
+            <div class="upload-container" id="dropZone">
+                <div class="upload-icon">
+                    <img src="{{ url_for('static', filename='images/upload-icon.svg') }}" alt="Upload">
+                </div>
+                <h3>Drag & Drop PDF Here</h3>
+                <p>or click to select file</p>
+                <input type="file" id="fileInput" accept=".pdf" style="display: none;">
+            </div>
+        </div>
+
+        <div id="pagesContainer" class="pages-container" style="display: none;">
+            <div class="pages-header">
+                <h3>Pages</h3>
+                <div class="page-actions">
+                    <button id="deleteSelected" class="button danger" disabled>Delete Selected</button>
+                    <button id="saveOrder" class="button primary">Save Changes</button>
+                </div>
+            </div>
+
+            <div id="pageGrid" class="page-grid">
+                <!-- Pages will be added here dynamically -->
+            </div>
+
+            <div class="save-container">
+                <button id="downloadPdf" class="button primary large">Download Reordered PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="progress" class="progress-bar" style="display: none;">
+        <div class="progress-fill"></div>
+    </div>
+
+    <!-- Page preview modal -->
+    <div id="previewModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="pagePreview" class="page-preview"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+<script src="{{ url_for('static', filename='js/reorder.js') }}"></script>
+{% endblock %} 
