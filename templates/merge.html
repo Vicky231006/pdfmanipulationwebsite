@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Merge PDFs - PDF Manipulator{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Merge PDFs</h1>
+    <p class="subtitle">Combine multiple PDF files into a single document</p>
+
+    <div class="upload-container" id="dropZone">
+        <div class="upload-icon">
+            <img src="{{ url_for('static', filename='images/upload-icon.svg') }}" alt="Upload">
+        </div>
+        <h3>Drag & Drop PDFs Here</h3>
+        <p>or click to select files</p>
+        <input type="file" id="fileInput" multiple accept=".pdf" style="display: none;">
+    </div>
+
+    <div id="fileList" class="file-list">
+        <div class="files-header">
+            <h3>Selected Files</h3>
+            <button id="clearAll" class="button secondary" style="display: none;">Clear All</button>
+        </div>
+        <div id="fileItems"></div>
+    </div>
+
+    <div class="actions">
+        <button id="mergeBtn" class="button primary large" disabled>Merge PDFs</button>
+    </div>
+
+    <div id="progress" class="progress-bar" style="display: none;">
+        <div class="progress-fill"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/merge.js') }}"></script>
+{% endblock %} 

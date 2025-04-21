@@ -1,0 +1,296 @@
+/* PDF Preview */
+.preview-section {
+    margin-top: 2rem;
+}
+
+.pdf-preview {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: var(--shadow);
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preview-placeholder {
+    color: var(--light-text);
+    text-align: center;
+}
+
+/* File List */
+.file-list {
+    margin-top: 2rem;
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: var(--shadow);
+}
+
+.files-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    background-color: var(--background-color);
+    transition: transform 0.3s;
+}
+
+.file-item:hover {
+    transform: translateY(-2px);
+}
+
+.file-info {
+    flex: 1;
+    min-width: 0; /* Allows text truncation to work */
+}
+
+.file-name {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-size {
+    color: var(--light-text);
+    font-size: 0.875rem;
+}
+
+.file-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+.file-actions button {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.file-actions button i {
+    font-size: 1rem;
+}
+
+/* Pages Grid */
+.pages-container {
+    margin-top: 2rem;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    padding: 1rem;
+    position: relative;
+}
+
+.pages-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    position: sticky;
+    top: 0;
+    background: var(--background-color);
+    z-index: 10;
+    padding: 1rem 0;
+}
+
+.page-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.page-item {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 0.5rem;
+    box-shadow: var(--shadow);
+    cursor: move;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.page-item:hover {
+    transform: translateY(-2px);
+}
+
+.page-preview {
+    width: 100%;
+    aspect-ratio: 1/1.414;
+    background-color: var(--background-color);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.page-preview canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.page-number {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.page-actions {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.page-item:hover .page-actions {
+    opacity: 1;
+}
+
+.page-action {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.page-action:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--light-text);
+}
+
+/* Drag and Drop */
+.sortable-ghost {
+    opacity: 0.5;
+}
+
+.sortable-chosen {
+    background-color: var(--primary-color);
+}
+
+/* Merge PDF Specific */
+.merge-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .merge-container {
+        grid-template-columns: 1fr;
+    }
+
+    .pages-container {
+        padding: 0.5rem;
+        max-height: calc(100vh - 150px);
+    }
+
+    .page-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 0.5rem;
+    }
+
+    .page-item {
+        padding: 0.25rem;
+    }
+
+    .page-actions {
+        opacity: 1;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 4px;
+        padding: 0.25rem;
+    }
+
+    .file-item {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.75rem;
+    }
+
+    .file-info {
+        margin-bottom: 0.5rem;
+    }
+
+    .file-actions {
+        justify-content: flex-end;
+        margin-left: 0;
+    }
+
+    .modal-content {
+        padding: 1rem;
+        width: 95%;
+    }
+
+    .pages-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .pages-header button {
+        width: 100%;
+    }
+} 

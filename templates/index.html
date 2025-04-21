@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Transform Your PDFs</h1>
+    <p class="subtitle">Powerful tools for all your PDF needs</p>
+
+    <div class="features">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <img src="{{ url_for('static', filename='images/image-icon.svg') }}" alt="Convert Images">
+            </div>
+            <h2>Convert Images to PDF</h2>
+            <p>Transform your images into professional PDF documents</p>
+            <a href="{{ url_for('convert') }}" class="button">Convert Now</a>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <img src="{{ url_for('static', filename='images/merge-icon.svg') }}" alt="Merge PDFs">
+            </div>
+            <h2>Merge PDFs</h2>
+            <p>Combine multiple PDF files into a single document</p>
+            <a href="{{ url_for('merge') }}" class="button">Merge Now</a>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <img src="{{ url_for('static', filename='images/reorder-icon.svg') }}" alt="Reorder Pages">
+            </div>
+            <h2>Reorder PDF Pages</h2>
+            <p>Rearrange PDF pages with drag-and-drop ease</p>
+            <a href="{{ url_for('reorder') }}" class="button">Reorder Now</a>
+        </div>
+    </div>
+</div>
+{% endblock %} 
